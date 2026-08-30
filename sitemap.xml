@@ -21,6 +21,24 @@
   </url>
 
   <url>
+    <loc>https://cashautouae.com/about-us.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cashautouae.com/about-us.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cashautouae.com/ar/about-us.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cashautouae.com/about-us.html"/>
+  </url>
+
+  <url>
+    <loc>https://cashautouae.com/ar/about-us.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cashautouae.com/about-us.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cashautouae.com/ar/about-us.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cashautouae.com/about-us.html"/>
+  </url>
+
+  <url>
     <loc>https://cashautouae.com/car-valuation.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -126,6 +144,78 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://cashautouae.com/sell-my-car-sharjah.html"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://cashautouae.com/ar/sell-my-car-sharjah.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cashautouae.com/sell-my-car-sharjah.html"/>
+  </url>
+
+  <url>
+    <loc>https://cashautouae.com/blog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cashautouae.com/blog/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cashautouae.com/ar/blog/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cashautouae.com/blog/"/>
+  </url>
+
+  <url>
+    <loc>https://cashautouae.com/ar/blog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cashautouae.com/blog/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cashautouae.com/ar/blog/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cashautouae.com/blog/"/>
+  </url>
+
+  <url>
+    <loc>https://cashautouae.com/blog/ownership-transfer-guide-uae.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cashautouae.com/blog/ownership-transfer-guide-uae.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cashautouae.com/ar/blog/ownership-transfer-guide-uae.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cashautouae.com/blog/ownership-transfer-guide-uae.html"/>
+  </url>
+
+  <url>
+    <loc>https://cashautouae.com/ar/blog/ownership-transfer-guide-uae.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cashautouae.com/blog/ownership-transfer-guide-uae.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cashautouae.com/ar/blog/ownership-transfer-guide-uae.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cashautouae.com/blog/ownership-transfer-guide-uae.html"/>
+  </url>
+
+  <url>
+    <loc>https://cashautouae.com/blog/car-valuation-factors-uae.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cashautouae.com/blog/car-valuation-factors-uae.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cashautouae.com/ar/blog/car-valuation-factors-uae.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cashautouae.com/blog/car-valuation-factors-uae.html"/>
+  </url>
+
+  <url>
+    <loc>https://cashautouae.com/ar/blog/car-valuation-factors-uae.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cashautouae.com/blog/car-valuation-factors-uae.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cashautouae.com/ar/blog/car-valuation-factors-uae.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cashautouae.com/blog/car-valuation-factors-uae.html"/>
+  </url>
+
+  <url>
+    <loc>https://cashautouae.com/blog/sell-financed-car-uae.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cashautouae.com/blog/sell-financed-car-uae.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cashautouae.com/ar/blog/sell-financed-car-uae.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cashautouae.com/blog/sell-financed-car-uae.html"/>
+  </url>
+
+  <url>
+    <loc>https://cashautouae.com/ar/blog/sell-financed-car-uae.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cashautouae.com/blog/sell-financed-car-uae.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cashautouae.com/ar/blog/sell-financed-car-uae.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cashautouae.com/blog/sell-financed-car-uae.html"/>
   </url>
 
 </urlset>
