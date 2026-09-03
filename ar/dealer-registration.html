@@ -1076,6 +1076,7 @@ document.getElementById('dealerSubmit').addEventListener('click', (e) => {
     try { parsed = JSON.parse(text); } catch (err) {}
 
     if (status === 200 && parsed && parsed.ok) {
+      if (window.dataLayer) { window.dataLayer.push({'event': 'dealer_form_submit'}); }
       const ref = parsed.id ? 'DLR-' + String(parsed.id).padStart(4, '0')
                             : 'DLR-' + Date.now().toString().slice(-5);
       document.getElementById('i18n-ok-ref').innerHTML =

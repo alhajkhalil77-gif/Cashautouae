@@ -1019,6 +1019,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   let lastSuccessRecord = null, lastSuccessRef = null;
 
   function showSuccessCard(record, refId){
+    if (window.dataLayer) { window.dataLayer.push({'event': 'valuation_form_submit'}); }
     lastSuccessRecord = record;
     lastSuccessRef = refId;
     const t = SUCCESS_TEXT[currentLang] || SUCCESS_TEXT.en;
