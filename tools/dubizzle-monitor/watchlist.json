@@ -8,7 +8,7 @@
       "min_price": null,
       "max_price": null,
       "keyword": null,
-      "max_pages": 2
+      "max_pages": 1
     },
     {
       "name": "Toyota Camry Hybrid 2021-2027",
@@ -18,7 +18,7 @@
       "min_price": null,
       "max_price": null,
       "keyword": "hybrid",
-      "max_pages": 2
+      "max_pages": 1
     },
     {
       "name": "Toyota RAV4 Hybrid 2021-2027",
@@ -28,7 +28,7 @@
       "min_price": null,
       "max_price": null,
       "keyword": "hybrid",
-      "max_pages": 2
+      "max_pages": 1
     },
     {
       "name": "Toyota Corolla Hybrid 2021-2027",
@@ -38,7 +38,7 @@
       "min_price": null,
       "max_price": null,
       "keyword": "hybrid",
-      "max_pages": 2
+      "max_pages": 1
     },
     {
       "name": "Toyota Corolla Cross Hybrid 2021-2027",
@@ -48,7 +48,7 @@
       "min_price": null,
       "max_price": null,
       "keyword": "hybrid",
-      "max_pages": 2
+      "max_pages": 1
     },
     {
       "name": "Hyundai Accent 2021-2027",
@@ -58,7 +58,7 @@
       "min_price": null,
       "max_price": null,
       "keyword": null,
-      "max_pages": 2
+      "max_pages": 1
     },
     {
       "name": "Hyundai Elantra 2021-2027",
@@ -68,7 +68,7 @@
       "min_price": null,
       "max_price": null,
       "keyword": null,
-      "max_pages": 2
+      "max_pages": 1
     },
     {
       "name": "Kia Picanto 2021-2027",
@@ -78,7 +78,7 @@
       "min_price": null,
       "max_price": null,
       "keyword": null,
-      "max_pages": 2
+      "max_pages": 1
     },
     {
       "name": "Kia Cerato 2021-2027",
@@ -88,7 +88,7 @@
       "min_price": null,
       "max_price": null,
       "keyword": null,
-      "max_pages": 2
+      "max_pages": 1
     }
   ]
 }
