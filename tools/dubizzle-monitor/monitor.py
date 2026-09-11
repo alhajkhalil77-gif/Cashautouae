@@ -68,21 +68,11 @@ def is_blocked(html):
     return "Pardon Our Interruption" in html or "Incapsula" in html[:2000]
 
 
-def scraperapi_request(url, api_key, render):
-    params = {"api_key": api_key, "url": url, "premium": "true"}
-    if render:
-        params["render"] = "true"
+def scraperapi_request(url, api_key):
+    params = {"api_key": api_key, "url": url, "premium": "true", "render": "true"}
     request_url = f"https://api.scraperapi.com/?{urllib.parse.urlencode(params)}"
-    timeout = 90 if render else 60
-
-    last_error = None
-    for attempt in range(2):
-        try:
-            with urllib.request.urlopen(request_url, timeout=timeout) as resp:
-                return resp.read().decode("utf-8", errors="replace")
-        except Exception as e:
-            last_error = e
-    raise last_error
+    with urllib.request.urlopen(request_url, timeout=90) as resp:
+        return resp.read().decode("utf-8", errors="replace")
 
 
 def fetch_html(url):
@@ -90,13 +80,9 @@ def fetch_html(url):
     if not api_key:
         raise RuntimeError("SCRAPERAPI_KEY is not set")
 
-    # Try the fast (non-rendered) request first; only pay for JS rendering
-    # if the plain fetch actually gets challenged.
-    html = scraperapi_request(url, api_key, render=False)
+    html = scraperapi_request(url, api_key)
     if is_blocked(html):
-        html = scraperapi_request(url, api_key, render=True)
-        if is_blocked(html):
-            raise RuntimeError(f"blocked by anti-bot protection at {url}")
+        raise RuntimeError(f"blocked by anti-bot protection at {url}")
     return html
 
 
