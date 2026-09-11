@@ -35,11 +35,6 @@ jobs:
         working-directory: tools/dubizzle-monitor
         run: pip install -r requirements.txt
 
-      - name: Install Playwright browser
-        if: github.event.inputs.mode != 'test'
-        working-directory: tools/dubizzle-monitor
-        run: playwright install --with-deps chromium
-
       - name: Run monitor
         working-directory: tools/dubizzle-monitor
         env:
@@ -48,6 +43,7 @@ jobs:
           NOTIFY_EMAIL_TO: ${{ secrets.NOTIFY_EMAIL_TO }}
           CALLMEBOT_PHONE: ${{ secrets.CALLMEBOT_PHONE }}
           CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}
+          SCRAPERAPI_KEY: ${{ secrets.SCRAPERAPI_KEY }}
         run: |
           if [ "${{ github.event.inputs.mode }}" = "test" ]; then
             python monitor.py --test
