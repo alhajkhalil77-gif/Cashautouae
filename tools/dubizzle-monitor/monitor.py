@@ -73,9 +73,16 @@ def scraperapi_request(url, api_key, render):
     if render:
         params["render"] = "true"
     request_url = f"https://api.scraperapi.com/?{urllib.parse.urlencode(params)}"
-    timeout = 75 if render else 30
-    with urllib.request.urlopen(request_url, timeout=timeout) as resp:
-        return resp.read().decode("utf-8", errors="replace")
+    timeout = 90 if render else 60
+
+    last_error = None
+    for attempt in range(2):
+        try:
+            with urllib.request.urlopen(request_url, timeout=timeout) as resp:
+                return resp.read().decode("utf-8", errors="replace")
+        except Exception as e:
+            last_error = e
+    raise last_error
 
 
 def fetch_html(url):
