@@ -85,12 +85,16 @@ Dubizzle Car Monitor) وشوف اللوق. إذا شفت رسالة `blocked by 
   خليها `null` إذا ما تبي فلترة كلمة معينة.
 - `max_pages`: كم صفحة نتائج يفحص بكل تشغيلة (2 كافية غالبًا لأن الفحص كل 10 دقايق).
 
-**المثال الحالي بالملف** (5 بحثات، كلها موديل 2021-2027، أي سعر، كل الإمارات):
+**المثال الحالي بالملف** (9 بحثات، كلها موديل 2021-2027، أي سعر، كل الإمارات):
 - Toyota C-HR (كل النسخ)
 - Toyota Camry Hybrid فقط
 - Toyota RAV4 Hybrid فقط
 - Toyota Corolla Hybrid فقط
 - Toyota Corolla Cross Hybrid فقط
+- Hyundai Accent
+- Hyundai Elantra
+- Kia Picanto
+- Kia Cerato
 
 لإضافة نوع سيارة ثاني (ماركة ثانية مثلاً)، ضيف عنصر جديد بنفس القائمة (array) بنفس الشكل.
 

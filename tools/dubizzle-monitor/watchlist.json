@@ -49,6 +49,46 @@
       "max_price": null,
       "keyword": "hybrid",
       "max_pages": 2
+    },
+    {
+      "name": "Hyundai Accent 2021-2027",
+      "url": "https://uae.dubizzle.com/motors/used-cars/hyundai/accent/",
+      "min_year": 2021,
+      "max_year": 2027,
+      "min_price": null,
+      "max_price": null,
+      "keyword": null,
+      "max_pages": 2
+    },
+    {
+      "name": "Hyundai Elantra 2021-2027",
+      "url": "https://uae.dubizzle.com/motors/used-cars/hyundai/elantra/",
+      "min_year": 2021,
+      "max_year": 2027,
+      "min_price": null,
+      "max_price": null,
+      "keyword": null,
+      "max_pages": 2
+    },
+    {
+      "name": "Kia Picanto 2021-2027",
+      "url": "https://uae.dubizzle.com/motors/used-cars/kia/picanto/",
+      "min_year": 2021,
+      "max_year": 2027,
+      "min_price": null,
+      "max_price": null,
+      "keyword": null,
+      "max_pages": 2
+    },
+    {
+      "name": "Kia Cerato 2021-2027",
+      "url": "https://uae.dubizzle.com/motors/used-cars/kia/cerato/",
+      "min_year": 2021,
+      "max_year": 2027,
+      "min_price": null,
+      "max_price": null,
+      "keyword": null,
+      "max_pages": 2
     }
   ]
 }
