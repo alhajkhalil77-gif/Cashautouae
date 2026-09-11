@@ -1,0 +1,13 @@
+{
+  "checks": [
+    {
+      "name": "Toyota C-HR 2021-2027",
+      "url": "https://uae.dubizzle.com/motors/used-cars/toyota/c-hr/",
+      "min_year": 2021,
+      "max_year": 2027,
+      "min_price": null,
+      "max_price": null,
+      "max_pages": 2
+    }
+  ]
+}
