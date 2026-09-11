@@ -98,6 +98,7 @@ def scrape_page(page, url):
             "id": ad_id,
             "url": full_url,
             "title": text[:120],
+            "text": text,
             "year": extract_year(text),
             "price": extract_price(text),
             "city": extract_city(text),
@@ -128,7 +129,10 @@ def passes_filters(ad, check):
     max_year = check.get("max_year")
     min_price = check.get("min_price")
     max_price = check.get("max_price")
+    keyword = check.get("keyword")
 
+    if keyword and keyword.lower() not in ad["text"].lower():
+        return False
     if min_year is not None and ad["year"] is not None and ad["year"] < min_year:
         return False
     if max_year is not None and ad["year"] is not None and ad["year"] > max_year:

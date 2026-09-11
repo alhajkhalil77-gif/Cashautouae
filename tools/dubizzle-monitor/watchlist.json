@@ -7,6 +7,47 @@
       "max_year": 2027,
       "min_price": null,
       "max_price": null,
+      "keyword": null,
+      "max_pages": 2
+    },
+    {
+      "name": "Toyota Camry Hybrid 2021-2027",
+      "url": "https://uae.dubizzle.com/motors/used-cars/toyota/camry/",
+      "min_year": 2021,
+      "max_year": 2027,
+      "min_price": null,
+      "max_price": null,
+      "keyword": "hybrid",
+      "max_pages": 2
+    },
+    {
+      "name": "Toyota RAV4 Hybrid 2021-2027",
+      "url": "https://uae.dubizzle.com/motors/used-cars/toyota/rav-4/",
+      "min_year": 2021,
+      "max_year": 2027,
+      "min_price": null,
+      "max_price": null,
+      "keyword": "hybrid",
+      "max_pages": 2
+    },
+    {
+      "name": "Toyota Corolla Hybrid 2021-2027",
+      "url": "https://uae.dubizzle.com/motors/used-cars/toyota/corolla/",
+      "min_year": 2021,
+      "max_year": 2027,
+      "min_price": null,
+      "max_price": null,
+      "keyword": "hybrid",
+      "max_pages": 2
+    },
+    {
+      "name": "Toyota Corolla Cross Hybrid 2021-2027",
+      "url": "https://uae.dubizzle.com/motors/used-cars/toyota/corolla-cross/",
+      "min_year": 2021,
+      "max_year": 2027,
+      "min_price": null,
+      "max_price": null,
+      "keyword": "hybrid",
       "max_pages": 2
     }
   ]
