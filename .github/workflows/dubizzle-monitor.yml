@@ -3,7 +3,13 @@ name: Dubizzle Car Monitor
 on:
   schedule:
     - cron: "*/10 * * * *"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "run = normal check, test = send a test notification only"
+        type: choice
+        options: [run, test]
+        default: run
 
 permissions:
   contents: write
@@ -25,11 +31,14 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         working-directory: tools/dubizzle-monitor
-        run: |
-          pip install -r requirements.txt
-          playwright install --with-deps chromium
+        run: pip install -r requirements.txt
+
+      - name: Install Playwright browser
+        if: github.event.inputs.mode != 'test'
+        working-directory: tools/dubizzle-monitor
+        run: playwright install --with-deps chromium
 
       - name: Run monitor
         working-directory: tools/dubizzle-monitor
@@ -39,9 +48,15 @@ jobs:
           NOTIFY_EMAIL_TO: ${{ secrets.NOTIFY_EMAIL_TO }}
           CALLMEBOT_PHONE: ${{ secrets.CALLMEBOT_PHONE }}
           CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}
-        run: python monitor.py
+        run: |
+          if [ "${{ github.event.inputs.mode }}" = "test" ]; then
+            python monitor.py --test
+          else
+            python monitor.py
+          fi
 
       - name: Commit updated state
+        if: github.event.inputs.mode != 'test'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

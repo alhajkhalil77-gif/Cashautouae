@@ -4,6 +4,7 @@
 Config: watchlist.json (list of searches to watch).
 State:  state/seen.json (ad IDs already notified about, persisted in git).
 """
+import argparse
 import json
 import os
 import re
@@ -13,8 +14,6 @@ import urllib.parse
 import urllib.request
 from email.mime.text import MIMEText
 from pathlib import Path
-
-from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).parent
 WATCHLIST_FILE = ROOT / "watchlist.json"
@@ -200,7 +199,32 @@ def notify(check_name, ad):
         print(f"[warn] whatsapp notification failed: {e}", file=sys.stderr)
 
 
+def run_test_notification():
+    ad = {
+        "id": "test",
+        "url": "https://uae.dubizzle.com/",
+        "title": "This is a test notification from dubizzle-monitor",
+        "text": "test",
+        "year": None,
+        "price": None,
+        "city": None,
+    }
+    print("[info] sending test notification (email + whatsapp if configured)")
+    notify("Test", ad)
+    print("[info] done. Check your inbox/WhatsApp.")
+
+
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--test", action="store_true", help="send a test notification and exit")
+    args = parser.parse_args()
+
+    if args.test:
+        run_test_notification()
+        return
+
+    from playwright.sync_api import sync_playwright
+
     watchlist = load_json(WATCHLIST_FILE, {"checks": []})
     state = load_json(STATE_FILE, {})
     state_changed = False
