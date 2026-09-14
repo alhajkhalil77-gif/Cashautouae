@@ -99,22 +99,35 @@ def parse_ads(html, base_url):
         if ad_id in ads:
             continue
 
+        # The anchor's own text is the most reliable source for the ad's
+        # title/year (a wider ancestor can accidentally sweep in text from
+        # neighboring cards). Only use the wider container as a fallback,
+        # and only when it isn't suspiciously long (a sign of contamination).
+        anchor_text = " ".join(anchor.get_text(" ", strip=True).split())
+
         container = anchor
-        for _ in range(4):
+        for _ in range(2):
             if container.parent is None or container.name in ("li", "article"):
                 break
             container = container.parent
+        container_text = " ".join(container.get_text(" ", strip=True).split())
+        if len(container_text) > 600:
+            container_text = anchor_text
 
-        text = " ".join(container.get_text(" ", strip=True).split())
+        year = extract_year(anchor_text) or extract_year(container_text)
+        price = extract_price(container_text) or extract_price(anchor_text)
+        city = extract_city(container_text) or extract_city(anchor_text)
+        title = (anchor_text or container_text)[:120]
+
         full_url = urllib.parse.urljoin(base_url, href)
         ads[ad_id] = {
             "id": ad_id,
             "url": full_url,
-            "title": text[:120],
-            "text": text,
-            "year": extract_year(text),
-            "price": extract_price(text),
-            "city": extract_city(text),
+            "title": title,
+            "text": container_text,
+            "year": year,
+            "price": price,
+            "city": city,
         }
     return ads
 
@@ -141,6 +154,8 @@ def passes_filters(ad, check):
     keyword = check.get("keyword")
 
     if keyword and keyword.lower() not in ad["text"].lower():
+        return False
+    if (min_year is not None or max_year is not None) and ad["year"] is None:
         return False
     if min_year is not None and ad["year"] is not None and ad["year"] < min_year:
         return False
@@ -238,9 +253,12 @@ def main():
     state_changed = False
 
     checks = watchlist.get("checks", [])
-    print(f"[info] checking {len(checks)} searches in parallel")
+    # ScraperAPI's plan caps concurrent in-flight requests (5 on the trial
+    # plan); going higher just trades timeouts/429s for no extra speed.
+    max_workers = min(len(checks), 5) or 1
+    print(f"[info] checking {len(checks)} searches ({max_workers} at a time)")
 
-    with ThreadPoolExecutor(max_workers=max(len(checks), 1)) as pool:
+    with ThreadPoolExecutor(max_workers=max_workers) as pool:
         future_to_check = {pool.submit(scrape_search, check): check for check in checks}
         for future in as_completed(future_to_check):
             check = future_to_check[future]
