@@ -12,6 +12,7 @@ import smtplib
 import sys
 import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from email.mime.text import MIMEText
 from pathlib import Path
 
@@ -236,29 +237,34 @@ def main():
     state = load_json(STATE_FILE, {})
     state_changed = False
 
-    for check in watchlist.get("checks", []):
-        name = check["name"]
-        print(f"[info] checking: {name}")
-        try:
-            ads = scrape_search(check)
-        except Exception as e:
-            print(f"[error] {name}: {e}", file=sys.stderr)
-            continue
+    checks = watchlist.get("checks", [])
+    print(f"[info] checking {len(checks)} searches in parallel")
 
-        seen_ids = set(state.get(name, []))
-        is_first_run = name not in state
-        new_ads = [ad for ad_id, ad in ads.items() if ad_id not in seen_ids]
+    with ThreadPoolExecutor(max_workers=max(len(checks), 1)) as pool:
+        future_to_check = {pool.submit(scrape_search, check): check for check in checks}
+        for future in as_completed(future_to_check):
+            check = future_to_check[future]
+            name = check["name"]
+            try:
+                ads = future.result()
+            except Exception as e:
+                print(f"[error] {name}: {e}", file=sys.stderr)
+                continue
 
-        if not is_first_run:
-            for ad in new_ads:
-                if passes_filters(ad, check):
-                    print(f"[info] new ad matched: {ad['url']}")
-                    notify(name, ad)
-        else:
-            print(f"[info] first run for '{name}', baselining {len(ads)} ads without notifying")
+            seen_ids = set(state.get(name, []))
+            is_first_run = name not in state
+            new_ads = [ad for ad_id, ad in ads.items() if ad_id not in seen_ids]
 
-        state[name] = sorted(set(ads.keys()) | seen_ids)
-        state_changed = True
+            if not is_first_run:
+                for ad in new_ads:
+                    if passes_filters(ad, check):
+                        print(f"[info] new ad matched: {ad['url']}")
+                        notify(name, ad)
+            else:
+                print(f"[info] first run for '{name}', baselining {len(ads)} ads without notifying")
+
+            state[name] = sorted(set(ads.keys()) | seen_ids)
+            state_changed = True
 
     if state_changed:
         save_json(STATE_FILE, state)
