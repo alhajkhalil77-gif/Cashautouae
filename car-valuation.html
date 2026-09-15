@@ -8,6 +8,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-TRQ6CBJZ');</script>
 <!-- End Google Tag Manager -->
+<!-- OpenAI Ads Pixel -->
+<script>!function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");oaiq("init",{pixelId:"7uCDWSbEAFhmNmv6BrucdP",debug:true});</script>
+<!-- End OpenAI Ads Pixel -->
 <meta charset="UTF-8">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
@@ -1020,6 +1023,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function showSuccessCard(record, refId){
     if (window.dataLayer) { window.dataLayer.push({'event': 'valuation_form_submit'}); }
+    if (window.oaiq) { window.oaiq('measure', 'lead_created', { type: 'customer_action' }); }
     lastSuccessRecord = record;
     lastSuccessRef = refId;
     const t = SUCCESS_TEXT[currentLang] || SUCCESS_TEXT.en;
