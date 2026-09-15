@@ -1,8 +1,9 @@
 name: Dubizzle Car Monitor
 
 on:
-  schedule:
-    - cron: "*/10 * * * *"
+  # Scheduled runs are paused. Re-add the `schedule:` trigger below to
+  # resume automatic checking (cron: "*/10 * * * *"). Manual runs via
+  # workflow_dispatch still work while paused.
   workflow_dispatch:
     inputs:
       mode:
