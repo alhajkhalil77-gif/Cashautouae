@@ -1084,7 +1084,6 @@ document.getElementById('dealerSubmit').addEventListener('click', (e) => {
 
     if (status === 200 && parsed && parsed.ok) {
       if (window.dataLayer) { window.dataLayer.push({'event': 'dealer_form_submit'}); }
-      if (window.oaiq) { window.oaiq('measure', 'lead_created', { type: 'customer_action' }); }
       const ref = parsed.id ? 'DLR-' + String(parsed.id).padStart(4, '0')
                             : 'DLR-' + Date.now().toString().slice(-5);
       document.getElementById('i18n-ok-ref').innerHTML =
