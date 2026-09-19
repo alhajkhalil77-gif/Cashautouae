@@ -1019,11 +1019,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   };
 
+  function sha256Hex(str) {
+    var enc = new TextEncoder().encode(str);
+    return crypto.subtle.digest('SHA-256', enc).then(function(buf){
+      return Array.prototype.map.call(new Uint8Array(buf), function(b){ return ('00'+b.toString(16)).slice(-2); }).join('');
+    });
+  }
+
   let lastSuccessRecord = null, lastSuccessRef = null;
 
   function showSuccessCard(record, refId){
     if (window.dataLayer) { window.dataLayer.push({'event': 'valuation_form_submit'}); }
-    if (window.oaiq) { window.oaiq('measure', 'lead_created', { type: 'customer_action' }); }
+    if (window.oaiq) {
+      (function(){
+        var user = {};
+        var jobs = [];
+        if (record.email) { jobs.push(sha256Hex(record.email.trim().toLowerCase()).then(function(h){ user.email_sha256 = h; })); }
+        if (record.phone) { jobs.push(sha256Hex(String(record.phone).replace(/[\s().-]/g, '').replace(/^\+/, '').replace(/^0+/, '')).then(function(h){ user.phone_number_sha256 = h; })); }
+        Promise.all(jobs).then(function(){
+          if (Object.keys(user).length) { window.oaiq('init', { user: user }); }
+          window.oaiq('measure', 'lead_created', { type: 'customer_action' });
+        }).catch(function(){
+          window.oaiq('measure', 'lead_created', { type: 'customer_action' });
+        });
+      })();
+    }
     lastSuccessRecord = record;
     lastSuccessRef = refId;
     const t = SUCCESS_TEXT[currentLang] || SUCCESS_TEXT.en;
