@@ -11,6 +11,9 @@ Allow: /
 User-agent: OAI-SearchBot
 Allow: /
 
+User-agent: OAI-AdsBot
+Allow: /
+
 User-agent: ClaudeBot
 Allow: /
 
