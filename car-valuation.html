@@ -1029,7 +1029,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   let lastSuccessRecord = null, lastSuccessRef = null;
 
   function showSuccessCard(record, refId){
-    if (window.dataLayer) { window.dataLayer.push({'event': 'valuation_form_submit'}); }
+    // Google Ads conversion (via GTM): fires only after the lead is saved successfully.
+    // transaction_id de-duplicates repeat fires; user_data feeds Enhanced Conversions.
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'valuation_form_submit',
+      'transaction_id': refId,
+      'lead_emirate': record.emirate || '',
+      'user_data': {
+        'email': record.email ? record.email.trim().toLowerCase() : undefined,
+        'phone_number': record.phone ? '+' + String(record.phone).replace(/\D/g, '') : undefined
+      }
+    });
     if (window.oaiq) {
       (function(){
         var user = {};
