@@ -4,6 +4,10 @@
   RewriteCond %{HTTPS} off [OR]
   RewriteCond %{HTTP_HOST} ^www\.cashautouae\.com$ [NC]
   RewriteRule ^(.*)$ https://cashautouae.com/$1 [L,R=301]
+
+  # Collapse /index.html, /ar/index.html, /blog/index.html etc. onto the folder URL
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[?\s] [NC]
+  RewriteRule ^(.*/)?index\.html$ https://cashautouae.com/$1 [L,R=301,NC]
 </IfModule>
 
 # ---- Serve WebP when the browser supports it ----
